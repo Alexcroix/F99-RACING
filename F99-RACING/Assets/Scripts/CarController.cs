@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
 
 
@@ -15,14 +16,22 @@ public class CarController : MonoBehaviour
     public WheelCollider FrontRight;
     public WheelCollider BackLeft;
     public WheelCollider BackRight;
+    
+    public GameObject BackLight;
 
+    public Transform FL;
+    public Transform FR;
+    public Transform BL;
+    public Transform BR;
+    
     public float Torque;
     public float Speed;
     public float MaxSpeed = 200f;
     public int Brake;
     public float CoefAcceleration;
     public float wheelAngleMax = 10f;
-    public bool Freinage = false; 
+    public bool Freinage = false;
+    public float DAMax = 40f;
 
     private void Start()
     {
@@ -40,7 +49,7 @@ public class CarController : MonoBehaviour
         TxtSpeed.text = "Speed: " + (int)Speed;
         
         //Acceleration
-        if (Input.GetKey(KeyCode.UpArrow) && Speed < MaxSpeed)
+        if (Input.GetKey(KeyCode.UpArrow) && Speed < MaxSpeed && !Freinage)
         {
             if (!Freinage)
             {
@@ -48,48 +57,82 @@ public class CarController : MonoBehaviour
                 BackRight.brakeTorque = 0;
                 FrontLeft.brakeTorque = 0;
                 FrontRight.brakeTorque = 0;
+                
                 BackLeft.motorTorque = Input.GetAxis("Vertical") * Torque * CoefAcceleration * Time.deltaTime;
                 BackRight.motorTorque = Input.GetAxis("Vertical") * Torque * CoefAcceleration * Time.deltaTime ;
             }
-            
 
         }
         
         //Deceleration
-        if (!Input.GetKey(KeyCode.UpArrow) || Speed > MaxSpeed && !Freinage)
+        else if (!Input.GetKey(KeyCode.UpArrow) && !Freinage || Speed > MaxSpeed )
         { 
             BackLeft.motorTorque = 0;
             BackRight.motorTorque = 0;
-            //FrontLeft.motorTorque = 0;
-            //FrontRight.motorTorque = 0;
-            
+            FrontLeft.motorTorque = 0;
+            FrontRight.motorTorque = 0;
+
             BackLeft.brakeTorque = Brake * CoefAcceleration * Time.deltaTime;
             BackRight.brakeTorque = Brake * CoefAcceleration * Time.deltaTime;
-            //FrontLeft.brakeTorque = Brake * CoefAcceleration * Time.deltaTime;
-            //FrontRight.brakeTorque = Brake * CoefAcceleration * Time.deltaTime;
         }
         
         //Direction du véhicule
-        FrontLeft.steerAngle = Input.GetAxis("Horizontal") * wheelAngleMax;
-        FrontRight.steerAngle = Input.GetAxis("Horizontal") * wheelAngleMax;
+
+        float Da = (((wheelAngleMax - DAMax) / MaxSpeed) * Speed) + DAMax; 
+        FrontLeft.steerAngle = Input.GetAxis("Horizontal") * Da;
+        FrontRight.steerAngle = Input.GetAxis("Horizontal") * Da;
+
+        //Rotation des roues
+        FL.Rotate(FrontLeft.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        FR.Rotate(FrontRight.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        BL.Rotate(BackLeft.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        BR.Rotate(BackRight.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        
+        //SteerAngle Mesh
+        FL.localEulerAngles = new Vector3(FL.localEulerAngles.x, FrontLeft.steerAngle - FL.localEulerAngles.z,
+            FL.localEulerAngles.z);
+        FR.localEulerAngles = new Vector3(FR.localEulerAngles.x, FrontRight.steerAngle - FR.localEulerAngles.z,
+            FR.localEulerAngles.z);
+        BR.localEulerAngles = new Vector3(BR.localEulerAngles.x, BackRight.steerAngle - BR.localEulerAngles.z,
+            BR.localEulerAngles.z);
+        BL.localEulerAngles = new Vector3(BL.localEulerAngles.x, BackLeft.steerAngle - BL.localEulerAngles.z,
+            BL.localEulerAngles.z);
+
+        //Marche arrière
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            BackLeft.brakeTorque = 0;
+            BackRight.brakeTorque = 0;
+            FrontLeft.brakeTorque = 0;
+            FrontRight.brakeTorque = 0;
+                
+            BackLeft.motorTorque = Input.GetAxis("Vertical") * Torque * CoefAcceleration * Time.deltaTime;
+            BackRight.motorTorque = Input.GetAxis("Vertical") * Torque * CoefAcceleration * Time.deltaTime ;
+        }
         
         //Freinage
+
         if (Input.GetKey(KeyCode.Space))
         {
             Freinage = true;
-            BackLeft.brakeTorque = Mathf.Infinity;
-            BackRight.brakeTorque = Mathf.Infinity;
-            FrontLeft.brakeTorque = Mathf.Infinity;
-            FrontRight.brakeTorque = Mathf.Infinity;
+
+            BackLeft.brakeTorque = 900000;
+            BackRight.brakeTorque = 900000;
+            FrontLeft.brakeTorque = 900000;
+            FrontRight.brakeTorque = 900000;
 
             BackLeft.motorTorque = 0;
-            BackRight.motorTorque = 0; 
+            BackRight.motorTorque = 0;
+            FrontLeft.motorTorque = 0;
+            FrontRight.motorTorque = 0;
             
-            
+            BackLight.SetActive(true);
         }
+        
         else
         {
             Freinage = false;
+            BackLight.SetActive(false);
         }
     }
 }
