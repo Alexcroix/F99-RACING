@@ -26,7 +26,7 @@ public class CarController : MonoBehaviour
     
     public float Torque;
     public float Speed;
-    public float MaxSpeed = 200f;
+    public float MaxSpeed = 800f;
     public int Brake;
     public float CoefAcceleration;
     public float wheelAngleMax = 10f;
@@ -36,7 +36,8 @@ public class CarController : MonoBehaviour
     private void Start()
     {
         //Régler le centre de masse
-        GetComponent<Rigidbody>().centerOfMass = new Vector3(0f, -0.2f, -0.8f); 
+        GetComponent<Rigidbody>().centerOfMass = new Vector3(0f, -0.2f, -0.8f);
+        
     }
 
     void Update()
@@ -49,7 +50,7 @@ public class CarController : MonoBehaviour
         TxtSpeed.text = "Speed: " + (int)Speed;
         
         //Acceleration
-        if (Input.GetKey(KeyCode.UpArrow) && Speed < MaxSpeed && !Freinage)
+        if (Input.GetKey(KeyCode.UpArrow) && Speed < MaxSpeed)
         {
             if (!Freinage)
             {
@@ -59,7 +60,7 @@ public class CarController : MonoBehaviour
                 FrontRight.brakeTorque = 0;
                 
                 BackLeft.motorTorque = Input.GetAxis("Vertical") * Torque * CoefAcceleration * Time.deltaTime;
-                BackRight.motorTorque = Input.GetAxis("Vertical") * Torque * CoefAcceleration * Time.deltaTime ;
+                BackRight.motorTorque = Input.GetAxis("Vertical") * Torque * CoefAcceleration * Time.deltaTime;
             }
 
         }

@@ -2348,6 +2348,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5259128046083022358, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: DAMax
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128046083022358, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: Torque
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128046083022358, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128046083022358, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: CoefAcceleration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128046114550296, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128046114550296, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5259128046272629802, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2395,6 +2419,30 @@ PrefabInstance:
     - target: {fileID: 5259128046272629803, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128047451027318, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128047451027318, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128047871693633, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128047871693633, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128047893440858, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128047893440858, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
