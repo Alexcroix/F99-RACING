@@ -73,8 +73,8 @@ public class CarController : MonoBehaviour
             FrontLeft.motorTorque = 0;
             FrontRight.motorTorque = 0;
 
-            BackLeft.brakeTorque = Brake * CoefAcceleration * Time.deltaTime;
-            BackRight.brakeTorque = Brake * CoefAcceleration * Time.deltaTime;
+            BackLeft.brakeTorque = Brake * CoefAcceleration * Time.deltaTime / 10;
+            BackRight.brakeTorque = Brake * CoefAcceleration * Time.deltaTime / 10;
         }
         
         //Direction du véhicule
@@ -117,10 +117,10 @@ public class CarController : MonoBehaviour
         {
             Freinage = true;
 
-            BackLeft.brakeTorque = 900000;
-            BackRight.brakeTorque = 900000;
-            FrontLeft.brakeTorque = 900000;
-            FrontRight.brakeTorque = 900000;
+            BackLeft.brakeTorque = 9000;
+            BackRight.brakeTorque = 9000;
+            FrontLeft.brakeTorque = 9000;
+            FrontRight.brakeTorque = 9000;
 
             BackLeft.motorTorque = 0;
             BackRight.motorTorque = 0;

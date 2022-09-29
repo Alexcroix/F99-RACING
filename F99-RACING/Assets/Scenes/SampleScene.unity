@@ -2349,6 +2349,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5259128046083022358, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
+      propertyPath: Brake
+      value: 358
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259128046083022358, guid: d9426569a672243ffabf8acc5f8f859f, type: 3}
       propertyPath: DAMax
       value: 20
       objectReference: {fileID: 0}
