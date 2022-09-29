@@ -387,6 +387,8 @@
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs"
+"Assets/WhiteCity/Textures/Other/Offer/ALIyerEdonAssets_Lighting.cs"
+"Assets/WhiteCity/Textures/Other/Offer/LightingTools_Offer.cs"
 -langversion:9.0
 
 /deterministic
