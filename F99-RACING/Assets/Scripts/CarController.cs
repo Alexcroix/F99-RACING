@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
+using Object = System.Object;
 
 
 public class CarController : MonoBehaviour
@@ -23,6 +24,8 @@ public class CarController : MonoBehaviour
     public Transform FR;
     public Transform BL;
     public Transform BR;
+    public Camera C1;
+    public Camera C2;
     
     public float Torque;
     public float Speed;
@@ -110,8 +113,20 @@ public class CarController : MonoBehaviour
             BackLeft.motorTorque = Input.GetAxis("Vertical") * Torque * CoefAcceleration * Time.deltaTime;
             BackRight.motorTorque = Input.GetAxis("Vertical") * Torque * CoefAcceleration * Time.deltaTime ;
         }
-        
-        //Freinage
+        //Changement POV
+        if (Input.GetKey(KeyCode.A))
+        {
+            C1.enabled = false;
+            C2.enabled = true;
+        }
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            C2.enabled = false;
+            C1.enabled = true;
+        }
+
+            //Freinage
 
         if (Input.GetKey(KeyCode.Space))
         {
