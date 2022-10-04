@@ -1277,11 +1277,11 @@ MonoBehaviour:
   BR: {fileID: 444081443888498212}
   C1: {fileID: 444081443028890796}
   C2: {fileID: 9173517315445933529}
-  Torque: 5000
+  Torque: 4000
   Speed: 0
   MaxSpeed: 400
   Brake: 60
-  CoefAcceleration: 50
+  CoefAcceleration: 30
   wheelAngleMax: 5
   Freinage: 0
   DAMax: 20
