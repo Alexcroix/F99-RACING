@@ -1062,4 +1062,7 @@
 {"msg":"runNodeAction","annotation":"Csc Library/Bee/artifacts/200b0aE.dag/Assembly-CSharp.dll (+2 others)","index":320}
 {"msg":"noderesult","processed_node_count":419,"number_of_nodes_ever_queued":424,"annotation":"MovedFromExtractorCombine Library/Bee/artifacts/200b0aE.dag/Assembly-CSharp.dll.mvfrm","index":334,"exitcode":0,"outputfile":"Library/Bee/artifacts/200b0aE.dag/Assembly-CSharp.dll.mvfrm"}
 {"msg":"noderesult","processed_node_count":420,"number_of_nodes_ever_queued":424,"annotation":"Csc Library/Bee/artifacts/200b0aE.dag/Assembly-CSharp.dll (+2 others)","index":320,"exitcode":0,"outputfile":"Library/Bee/artifacts/200b0aE.dag/Assembly-CSharp.dll","stdout":"Assets/WhiteCity/Textures/Other/Offer/LightingTools_Offer.cs(14,2): warning CS0618: 'WWW' is obsolete: 'Use UnityWebRequest, a fully featured replacement which is more efficient and has additional features'\nAssets/WhiteCity/Textures/Other/Offer/LightingTools_Offer.cs(70,15): warning CS0618: 'WWW' is obsolete: 'Use UnityWebRequest, a fully featured replacement which is more efficient and has additional features'\nAssets/WhiteCity/Textures/Other/Offer/LightingTools_Offer.cs(86,13): warning CS0618: 'WWW' is obsolete: 'Use UnityWebRequest, a fully featured replacement which is more efficient and has additional features'"}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
