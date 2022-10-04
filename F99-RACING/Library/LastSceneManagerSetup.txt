@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Circuit2.unity
+=======
+- path: Assets/Scenes/StartMenu.unity
+>>>>>>> Alexandre
   isLoaded: 1
   isActive: 1
   isSubScene: 0
