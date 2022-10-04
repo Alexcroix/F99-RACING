@@ -48,7 +48,8 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     {
         MainPanel.SetActive(false);
         PVPPanel.SetActive(true);
-        
+        lobbyPanel.SetActive(true);
+        roomPanel.SetActive(false);
     }
 
     public void OnClickBackToMain()
@@ -70,7 +71,13 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public void OnClickMap1()
     {
         PhotonNetwork.CreateRoom(PhotonNetwork.NickName, new RoomOptions() { IsOpen = false, IsVisible = false });
-        PhotonNetwork.LoadLevel("SampleScene");
+        PhotonNetwork.LoadLevel("Circuit1");
+    }
+
+    public void OnClickMap2()
+    {
+        PhotonNetwork.CreateRoom(PhotonNetwork.NickName, new RoomOptions() { IsOpen = false, IsVisible = false });
+        PhotonNetwork.LoadLevel("Circuit2");
     }
     
     
@@ -89,7 +96,11 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public RoomItem RoomItemPrefab;
     private List<RoomItem> roomItemList = new List<RoomItem>();
     public Transform contentObject;
-    
+    public float timeBetweenUpdate = 1.5f;
+    private float nextUpdateTime;
+    public List<PlayerItem> playerItemsList = new List<PlayerItem>();
+    public PlayerItem PlayerItemPrefab;
+    public Transform playerItemParent;
 
     public void OnClickCreate()
     {
@@ -105,11 +116,17 @@ public class lobbymanager : MonoBehaviourPunCallbacks
         roomPanel.SetActive(true);
         UserName.text = "";
         roomName.text = "Room Name : " + PhotonNetwork.CurrentRoom.Name;
+        UpdatePlayerList();
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        UpdateRoomList(roomList);
+        if (Time.time >= nextUpdateTime)
+        {
+            UpdateRoomList(roomList);
+            nextUpdateTime = Time.time + timeBetweenUpdate;
+        }
+        
     }
 
     void UpdateRoomList(List<RoomInfo> list)
@@ -131,5 +148,55 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public void JoinRoom(string roomName)
     {
         PhotonNetwork.JoinRoom(roomName);
+    }
+
+    public void OnClickLeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        roomPanel.SetActive(false);
+        lobbyPanel.SetActive(true);
+        UserName.text = "Welcome " + PhotonNetwork.NickName;
+    }
+
+    
+    // ReSharper disable Unity.PerformanceAnalysis
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby();
+    }
+
+    void UpdatePlayerList()
+    {
+        foreach (var item in playerItemsList)
+        {
+            Destroy(item.gameObject);
+        }
+        playerItemsList.Clear();
+
+        if (PhotonNetwork.CurrentRoom == null)
+        {
+            return;
+        }
+
+        foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+        {
+            PlayerItem newPlayerItem = Instantiate(PlayerItemPrefab, playerItemParent);
+            newPlayerItem.SetPlayerInfo(player.Value);
+            playerItemsList.Add(newPlayerItem);
+        }
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        UpdatePlayerList();
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        UpdatePlayerList();
     }
 }

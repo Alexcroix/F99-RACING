@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CarController
     - ConnectToServer
+    - PlayerItem
     - RoomItem
     - lobbymanager
     PhotonUnityNetworking.Demos.dll:
@@ -120,6 +121,9 @@ ScriptsOnlyBuild:
     methodName: OnClickSolo
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
+    methodName: OnClickMap2
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
     methodName: OnClickPVP
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
@@ -133,8 +137,48 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
     methodName: OnClickBackToMain
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
+    methodName: OnClickLeaveRoom
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/Circuit1.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 2744}
+    - Class: 114
+      Script: {instanceID: 6738}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    Assets/Scenes/Circuit2.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -174,17 +218,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1564}
     - Class: 114
-      Script: {instanceID: 2744}
+      Script: {instanceID: 5568}
     - Class: 114
-      Script: {instanceID: 5564}
+      Script: {instanceID: 6224}
     - Class: 114
-      Script: {instanceID: 6220}
+      Script: {instanceID: 6380}
     - Class: 114
-      Script: {instanceID: 6376}
-    - Class: 114
-      Script: {instanceID: 6416}
-    - Class: 114
-      Script: {instanceID: 6734}
+      Script: {instanceID: 6420}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -257,55 +297,55 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2744}
     - Class: 114
-      Script: {instanceID: 3212}
+      Script: {instanceID: 3214}
     - Class: 114
-      Script: {instanceID: 3306}
+      Script: {instanceID: 3308}
     - Class: 114
-      Script: {instanceID: 4112}
+      Script: {instanceID: 4114}
     - Class: 114
-      Script: {instanceID: 4116}
+      Script: {instanceID: 4118}
     - Class: 114
-      Script: {instanceID: 4302}
+      Script: {instanceID: 4304}
     - Class: 114
-      Script: {instanceID: 4330}
+      Script: {instanceID: 4332}
     - Class: 114
-      Script: {instanceID: 4410}
+      Script: {instanceID: 4412}
     - Class: 114
-      Script: {instanceID: 4434}
+      Script: {instanceID: 4436}
     - Class: 114
-      Script: {instanceID: 4450}
+      Script: {instanceID: 4452}
     - Class: 114
-      Script: {instanceID: 4734}
+      Script: {instanceID: 4738}
     - Class: 114
-      Script: {instanceID: 5330}
+      Script: {instanceID: 5334}
     - Class: 114
-      Script: {instanceID: 5468}
+      Script: {instanceID: 5472}
     - Class: 114
-      Script: {instanceID: 5494}
+      Script: {instanceID: 5498}
     - Class: 114
-      Script: {instanceID: 5564}
+      Script: {instanceID: 5568}
     - Class: 114
-      Script: {instanceID: 5964}
+      Script: {instanceID: 5968}
     - Class: 114
-      Script: {instanceID: 6012}
+      Script: {instanceID: 6016}
     - Class: 114
-      Script: {instanceID: 6220}
+      Script: {instanceID: 6224}
     - Class: 114
-      Script: {instanceID: 6376}
+      Script: {instanceID: 6380}
     - Class: 114
-      Script: {instanceID: 6734}
+      Script: {instanceID: 6738}
     - Class: 114
-      Script: {instanceID: 6748}
+      Script: {instanceID: 6752}
     - Class: 114
-      Script: {instanceID: 7390}
+      Script: {instanceID: 7394}
     - Class: 114
-      Script: {instanceID: 7942}
+      Script: {instanceID: 7946}
     - Class: 114
-      Script: {instanceID: 8332}
+      Script: {instanceID: 8336}
     - Class: 114
-      Script: {instanceID: 8466}
+      Script: {instanceID: 8470}
     - Class: 114
-      Script: {instanceID: 8804}
+      Script: {instanceID: 8808}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -355,8 +395,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 1558}
     - Class: 114
@@ -366,29 +404,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2744}
     - Class: 114
-      Script: {instanceID: 3306}
+      Script: {instanceID: 3200}
     - Class: 114
-      Script: {instanceID: 4178}
+      Script: {instanceID: 3308}
     - Class: 114
-      Script: {instanceID: 4434}
+      Script: {instanceID: 4180}
     - Class: 114
-      Script: {instanceID: 5330}
+      Script: {instanceID: 4436}
     - Class: 114
-      Script: {instanceID: 5564}
+      Script: {instanceID: 4458}
     - Class: 114
-      Script: {instanceID: 5810}
+      Script: {instanceID: 5334}
     - Class: 114
-      Script: {instanceID: 6220}
+      Script: {instanceID: 5568}
     - Class: 114
-      Script: {instanceID: 6376}
+      Script: {instanceID: 5814}
     - Class: 114
-      Script: {instanceID: 6734}
+      Script: {instanceID: 6224}
     - Class: 114
-      Script: {instanceID: 7204}
+      Script: {instanceID: 6380}
     - Class: 114
-      Script: {instanceID: 7946}
+      Script: {instanceID: 6738}
     - Class: 114
-      Script: {instanceID: 25920}
+      Script: {instanceID: 7208}
+    - Class: 114
+      Script: {instanceID: 7950}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -816,6 +856,12 @@ ScriptsOnlyBuild:
     className: OnClickInstantiate
   - hash:
       serializedVersion: 2
+      Hash: 51fa87cfc390803c2f0dcb5faf56f570
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerItem
+  - hash:
+      serializedVersion: 2
       Hash: 00e94708ac94b5a38c9f21b9f89467a6
     assemblyName: PhotonUnityNetworking.dll
     namespaceName: Photon.Pun
@@ -1176,6 +1222,12 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
+      Hash: 260bd705c0ec6c8afdd6e5443c6718f0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RoomItem
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -1512,7 +1564,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 7633552ac1901a3c22cfde22cfdff4fe
+      Hash: 9c865b58072b9fa9db7b74caef34f847
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: lobbymanager
@@ -1626,7 +1678,7 @@ ScriptsOnlyBuild:
     className: RoomListView
   - hash:
       serializedVersion: 2
-      Hash: ca70d3c0ba51a26ce38d8bbd1488d645
+      Hash: f4e9470bb382ac072c98ffb6a6d2a7bb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CarController
@@ -2224,15 +2276,10 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 260bd705c0ec6c8afdd6e5443c6718f0
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RoomItem
   platform: 19
   scenePathNames:
   - Assets/Scenes/StartMenu.unity
   - Assets/Scenes/lobby.unity
-  - Assets/Scenes/SampleScene.unity
-  playerPath: D:/GitHub/F99-RACING/F99-RACING/Build/F99-RACING.exe
+  - Assets/Scenes/Circuit1.unity
+  - Assets/Scenes/Circuit2.unity
+  playerPath: D:/GitHub/Build/F99-RACING.exe
