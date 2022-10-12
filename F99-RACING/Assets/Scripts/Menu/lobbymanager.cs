@@ -101,6 +101,7 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public List<PlayerItem> playerItemsList = new List<PlayerItem>();
     public PlayerItem PlayerItemPrefab;
     public Transform playerItemParent;
+    public GameObject buttonStart;
 
     public void OnClickCreate()
     {
@@ -112,6 +113,10 @@ public class lobbymanager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            buttonStart.SetActive(true);
+        }
         lobbyPanel.SetActive(false);
         roomPanel.SetActive(true);
         UserName.text = "";
@@ -190,6 +195,8 @@ public class lobbymanager : MonoBehaviourPunCallbacks
         }
     }
 
+    
+    
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         UpdatePlayerList();
@@ -198,5 +205,21 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         UpdatePlayerList();
+    }
+
+    public ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
+    public void OnClickStart()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            {
+                playerProperties["NumberInRoom"] = (int)i;
+                PhotonNetwork.PlayerList[i].SetCustomProperties(playerProperties);
+                i++;
+            }
+        }
+        
+        PhotonNetwork.LoadLevel("Circuit1");
     }
 }

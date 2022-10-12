@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
@@ -36,11 +37,17 @@ public class CarController : MonoBehaviour
     public bool Freinage = false;
     public float DAMax = 40f;
 
+    public GameObject Camera;
+    public PhotonView View;
     private void Start()
     {
         //Régler le centre de masse
         GetComponent<Rigidbody>().centerOfMass = new Vector3(0f, -0.2f, -0.8f);
         
+        if (View.IsMine)
+        {
+            Camera.SetActive(true);
+        }
     }
 
     void Update()
