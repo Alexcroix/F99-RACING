@@ -330,6 +330,7 @@
 "Assets/Scripts/Menu/ConnectToServer.cs"
 "Assets/Scripts/Menu/lobbymanager.cs"
 "Assets/Scripts/Menu/PlayerItem.cs"
+"Assets/Scripts/Menu/PlayerSpawner.cs"
 "Assets/Scripts/Menu/RoomItem.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"

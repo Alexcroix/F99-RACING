@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using ExitGames.Client.Photon;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -77,7 +79,12 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public void OnClickMap2()
     {
         PhotonNetwork.CreateRoom(PhotonNetwork.NickName, new RoomOptions() { IsOpen = false, IsVisible = false });
-        PhotonNetwork.LoadLevel("Circuit2");
+        
+        var hash = PhotonNetwork.LocalPlayer.CustomProperties;
+        hash.Add("NumberInRoom",0);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        
+        PhotonNetwork.LoadLevel("Circuit_Ach");
     }
     
     
@@ -206,20 +213,29 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     {
         UpdatePlayerList();
     }
-
-    public ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
+    
+    
+    
     public void OnClickStart()
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            
             for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             {
-                playerProperties["NumberInRoom"] = (int)i;
-                PhotonNetwork.PlayerList[i].SetCustomProperties(playerProperties);
-                i++;
+
+                var hash = PhotonNetwork.PlayerList[i].CustomProperties;
+                
+                hash.Add("NumberInRoom",i);
+                
+                //Debug.Log((int)hash["NumberInRoom"]);
+                
+                PhotonNetwork.PlayerList[i].SetCustomProperties(hash);
+
+                Debug.Log(PhotonNetwork.PlayerList[i].CustomProperties["NumberInRoom"]);
             }
         }
-        
         PhotonNetwork.LoadLevel("Circuit1");
     }
+    
 }
