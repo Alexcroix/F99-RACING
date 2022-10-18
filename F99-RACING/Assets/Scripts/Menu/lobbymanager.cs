@@ -40,6 +40,11 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     {
         MainPanel.SetActive(false);
         SoloPanel.SetActive(true);
+        PhotonNetwork.CreateRoom(PhotonNetwork.NickName, new RoomOptions() { IsOpen = false, IsVisible = false });
+        
+        var hash = PhotonNetwork.LocalPlayer.CustomProperties;
+        hash.Add("NumberInRoom",0);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
     public void OnClickIA()
     {
@@ -69,26 +74,26 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     }
     
     //--------------------------Solo Time Attack------------------
-
+    
     public void OnClickMap1()
     {
-        PhotonNetwork.CreateRoom(PhotonNetwork.NickName, new RoomOptions() { IsOpen = false, IsVisible = false });
-        PhotonNetwork.LoadLevel("Circuit1");
+        if (PhotonNetwork.CurrentRoom != null)
+        {
+            PhotonNetwork.LoadLevel("Circuit1");
+        }
     }
 
     public void OnClickMap2()
     {
-        PhotonNetwork.CreateRoom(PhotonNetwork.NickName, new RoomOptions() { IsOpen = false, IsVisible = false });
         
-        var hash = PhotonNetwork.LocalPlayer.CustomProperties;
-        hash.Add("NumberInRoom",0);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        if (PhotonNetwork.CurrentRoom != null)
+        {
+            PhotonNetwork.LoadLevel("Circuit_Ach");
+        }
         
-        PhotonNetwork.LoadLevel("Circuit_Ach");
     }
-    
-    
-    
+
+
     //--------------------------Solo VS IA------------------------
     
     

@@ -106,6 +106,9 @@ ScriptsOnlyBuild:
     fullTypeName: ConnectToServer
     methodName: OnClickConnect
   - assembly: Assembly-CSharp
+    fullTypeName: RoomItem
+    methodName: OnClickItem
+  - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
     methodName: OnClickStart
   - assembly: Assembly-CSharp
@@ -141,9 +144,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
     methodName: OnClickLeaveRoom
-  - assembly: Assembly-CSharp
-    fullTypeName: RoomItem
-    methodName: OnClickItem
   sceneClasses:
     Assets/Scenes/Circuit1.unity:
     - Class: 1
