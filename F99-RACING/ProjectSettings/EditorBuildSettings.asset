@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Circuit_Ach.unity
     guid: 4c4dff9e17369a14ea1d2ebb79063439
+  - enabled: 1
+    path: Assets/Scenes/Circuit1IA.unity
+    guid: 4a89b2ac84fe8d34e8b023705e5ad2dd
   m_configObjects: {}

@@ -50,6 +50,12 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     {
         MainPanel.SetActive(false);
         IAPanel.SetActive(true);
+        
+        PhotonNetwork.CreateRoom(PhotonNetwork.NickName, new RoomOptions() { IsOpen = false, IsVisible = false });
+        
+        var hash = PhotonNetwork.LocalPlayer.CustomProperties;
+        hash.Add("NumberInRoom",0);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
     public void OnClickPVP()
     {
@@ -95,8 +101,14 @@ public class lobbymanager : MonoBehaviourPunCallbacks
 
 
     //--------------------------Solo VS IA------------------------
-    
-    
+
+    public void OnClickMap1IA()
+    {
+        if (PhotonNetwork.CurrentRoom != null)
+        {
+            PhotonNetwork.LoadLevel("Circuit1IA");
+        }
+    }
     
     
     //--------------------------Multiplayer-----------------------
