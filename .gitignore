@@ -71,3 +71,11 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+*.log
+*.log
+*.traceevents
+*.meta
+*.meta
+*.traceevents
+*.asset
+*.dwlt
