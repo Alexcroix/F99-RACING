@@ -45,6 +45,7 @@ public class lobbymanager : MonoBehaviourPunCallbacks
         var hash = PhotonNetwork.LocalPlayer.CustomProperties;
         hash.Add("NumberInRoom",0);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        UpdateImageMap();
     }
     public void OnClickIA()
     {
@@ -71,6 +72,10 @@ public class lobbymanager : MonoBehaviourPunCallbacks
         SoloPanel.SetActive(false);
         IAPanel.SetActive(false);
         PVPPanel.SetActive(false);
+        if (PhotonNetwork.CurrentRoom != null)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
     }
 
     public void OnClickBack()
@@ -80,23 +85,49 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     }
     
     //--------------------------Solo Time Attack------------------
+
+
+    public RawImage mapImage;
+    public Texture[] ListMapImage;
+    public string[] ListMap;
+    
+    [SerializeField]public int mapSelection = 0;
     
     public void OnClickMap1()
     {
-        if (PhotonNetwork.CurrentRoom != null)
-        {
-            PhotonNetwork.LoadLevel("Circuit1");
-        }
+        mapSelection = 0;
+        UpdateImageMap();
     }
 
     public void OnClickMap2()
     {
-        
+        mapSelection = 1;
+        UpdateImageMap();
+    }
+    
+    public void OnClickMap3()
+    {
+        mapSelection = 2;
+        UpdateImageMap();
+    }
+    
+    public void OnClickMap4()
+    {
+        mapSelection = 3;
+        UpdateImageMap();
+    }
+    
+    public void OnClickStartSolo()
+    {
         if (PhotonNetwork.CurrentRoom != null)
         {
-            PhotonNetwork.LoadLevel("Circuit_Ach");
+            PhotonNetwork.LoadLevel(ListMap[mapSelection]);
         }
-        
+    }
+
+    private void UpdateImageMap()
+    {
+        mapImage.texture = ListMapImage[mapSelection];
     }
 
 
