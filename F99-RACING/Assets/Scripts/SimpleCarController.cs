@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class AxleInfo {
@@ -34,8 +36,14 @@ public class SimpleCarController : MonoBehaviour {
     
     public PhotonView View;
 
-    public Light backlight;
+    public GameObject backlight;
+
+    public Image speedBar;
+    private float maxSpeed = 150f;
     
+    //barre de progression de la vitesse
+    private float Speed = 0f;
+
     public void Start()
     {
         if (View.IsMine)
@@ -43,8 +51,8 @@ public class SimpleCarController : MonoBehaviour {
             Camera.SetActive(true);
         }
         
-        //backlight.Reset();
-        
+        backlight.SetActive(false);
+
     }
 
     // finds the corresponding visual wheel
@@ -70,8 +78,13 @@ public class SimpleCarController : MonoBehaviour {
         
         float motor = maxMotorTorque * Input.GetAxis("Vertical");
         float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
-     
+        Speed = GetComponent<Rigidbody>().velocity.magnitude * 3.6f;
+        
+        //affichage de la vitesse
+        speedBar.fillAmount = (int)Speed / maxSpeed;
+        
         foreach (AxleInfo axleInfo in axleInfos) {
+            
             axleInfo.rightWheel.brakeTorque = 0;
             axleInfo.leftWheel.brakeTorque = 0;
             
@@ -82,19 +95,19 @@ public class SimpleCarController : MonoBehaviour {
             
             if (Input.GetKey(KeyCode.Space))
             {
-                Debug.Log("coucou");
-                axleInfo.motor = false;
                 axleInfo.rightWheel.brakeTorque = motor + 600;
                 axleInfo.leftWheel.brakeTorque = motor + 600;
+                backlight.SetActive(true);
             }
+            
+            if (Input.GetKeyUp(KeyCode.Space)) backlight.SetActive(false);
+            
             else if (axleInfo.motor) {
                 
                 axleInfo.leftWheel.motorTorque = motor;
                 axleInfo.rightWheel.motorTorque = motor;
             }
-
             
-
             ApplyLocalPositionToVisuals(axleInfo.leftWheel);
             ApplyLocalPositionToVisuals(axleInfo.rightWheel);
         }
@@ -114,11 +127,6 @@ public class SimpleCarController : MonoBehaviour {
             C1.enabled = true;
         }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            backlight.intensity = 10000;
-        }
-        
         //Rotation des roues
         FL.Rotate(FrontLeft.rpm / 60 * 360 * Time.deltaTime, 0, 0);
         FR.Rotate(FrontRight.rpm / 60 * 360 * Time.deltaTime, 0, 0);
