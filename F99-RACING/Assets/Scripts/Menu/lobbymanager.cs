@@ -57,6 +57,7 @@ public class lobbymanager : MonoBehaviourPunCallbacks
         var hash = PhotonNetwork.LocalPlayer.CustomProperties;
         hash.Add("NumberInRoom",0);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        UpdateImageMapIA();
     }
     public void OnClickPVP()
     {
@@ -91,7 +92,7 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public Texture[] ListMapImage;
     public string[] ListMap;
     
-    [SerializeField]public int mapSelection = 0;
+    public int mapSelection = 0;
     
     public void OnClickMap1()
     {
@@ -133,12 +134,46 @@ public class lobbymanager : MonoBehaviourPunCallbacks
 
     //--------------------------Solo VS IA------------------------
 
+    public RawImage mapImageIA;
+    
+    public string[] ListMapIA;
+
+    private int mapSelectionIA = 0;
     public void OnClickMap1IA()
+    {
+        mapSelectionIA = 0;
+        UpdateImageMapIA();
+    }
+
+    public void OnClickMap2IA()
+    {
+        mapSelectionIA = 1;
+        UpdateImageMapIA();
+    }
+
+    public void OnClickMap3IA()
+    {
+        mapSelectionIA = 2;
+        UpdateImageMapIA();
+    }
+
+    public void OnClickMap4IA()
+    {
+        mapSelectionIA = 3;
+        UpdateImageMapIA();
+    }
+    
+    public void OnClickStartIA()
     {
         if (PhotonNetwork.CurrentRoom != null)
         {
-            PhotonNetwork.LoadLevel("Circuit1IA");
+            PhotonNetwork.LoadLevel(ListMapIA[mapSelection]);
         }
+    }
+    
+    private void UpdateImageMapIA()
+    {
+        mapImageIA.texture = ListMapImage[mapSelectionIA];
     }
     
     
@@ -156,7 +191,10 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public List<PlayerItem> playerItemsList = new List<PlayerItem>();
     public PlayerItem PlayerItemPrefab;
     public Transform playerItemParent;
-    public GameObject buttonStart;
+    
+    public GameObject MasterPanel;
+    public RawImage mapImageMult;
+    public int mapSelectMult = 0;
 
     public void OnClickCreate()
     {
@@ -170,13 +208,17 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            buttonStart.SetActive(true);
+            MasterPanel.SetActive(true);
         }
         lobbyPanel.SetActive(false);
         roomPanel.SetActive(true);
         UserName.text = "";
         roomName.text = "Room Name : " + PhotonNetwork.CurrentRoom.Name;
         UpdatePlayerList();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            UpdateMultMapImage(0);
+        }
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -186,7 +228,6 @@ public class lobbymanager : MonoBehaviourPunCallbacks
             UpdateRoomList(roomList);
             nextUpdateTime = Time.time + timeBetweenUpdate;
         }
-        
     }
 
     void UpdateRoomList(List<RoomInfo> list)
@@ -255,13 +296,13 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         UpdatePlayerList();
+        View.RPC("UpdateMultMapImage",RpcTarget.All,mapSelectMult);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         UpdatePlayerList();
     }
-    
     
     
     public void OnClickStart()
@@ -283,7 +324,38 @@ public class lobbymanager : MonoBehaviourPunCallbacks
                 Debug.Log(PhotonNetwork.PlayerList[i].CustomProperties["NumberInRoom"]);
             }
         }
-        PhotonNetwork.LoadLevel("Circuit1");
+        PhotonNetwork.LoadLevel(ListMap[mapSelectMult]);
+    }
+
+    public PhotonView View;
+    public void OnClickMap1Mult()
+    {
+        mapSelectMult = 0;
+        View.RPC("UpdateMultMapImage",RpcTarget.All,0);
+    }
+
+    
+    public void OnClickMap2Mult()
+    {
+        mapSelectMult = 1;
+        View.RPC("UpdateMultMapImage",RpcTarget.All,1);
+    }
+
+    public void OnClickMap3Mult()
+    {
+        mapSelectMult = 2;
+        View.RPC("UpdateMultMapImage",RpcTarget.All,2);
+    }
+
+    public void OnClickMap4Mult()
+    {
+        mapSelectMult = 3;
+        View.RPC("UpdateMultMapImage",RpcTarget.All,3);
     }
     
+    [PunRPC]
+    public void UpdateMultMapImage(int map)
+    {
+        mapImageMult.texture = ListMapImage[map];
+    }
 }

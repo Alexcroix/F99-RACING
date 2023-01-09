@@ -325,6 +325,7 @@
 -r:"Library/Bee/artifacts/1900b0aPDevDbg.dag/Unity.VisualScripting.Flow.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aPDevDbg.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aPDevDbg.dag/UnityEngine.UI.ref.dll"
+"Assets/ImageUpdate.cs"
 "Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs"
 "Assets/Scripts/CarController.cs"
 "Assets/Scripts/Menu/ConnectToServer.cs"

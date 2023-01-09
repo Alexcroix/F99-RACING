@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CarController
     - ConnectToServer
+    - ImageUpdate
     - PlayerItem
     - PlayerSpawner
     - RoomItem
@@ -49,6 +50,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
+    - UnityEngine.UI.RawImage
     - UnityEngine.UI.RectMask2D
     - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Shadow
@@ -110,10 +112,25 @@ ScriptsOnlyBuild:
     methodName: OnClickItem
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
+    methodName: OnClickMap4IA
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
+    methodName: OnClickStartSolo
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
+    methodName: OnClickMap1Mult
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
+    methodName: OnClickMap3Mult
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
     methodName: OnClickStart
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
     methodName: OnClickMap1
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
+    methodName: OnClickMap4
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
     methodName: OnClickBackToMain
@@ -125,6 +142,9 @@ ScriptsOnlyBuild:
     methodName: OnClickSolo
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
+    methodName: OnClickMap3
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
     methodName: OnClickMap2
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
@@ -134,18 +154,109 @@ ScriptsOnlyBuild:
     methodName: OnClickBackToMain
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
+    methodName: OnClickMap1IA
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
+    methodName: OnClickMap2Mult
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
     methodName: OnClickIA
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
+    methodName: OnClickMap3IA
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
     methodName: OnClickCreate
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
+    methodName: OnClickMap2IA
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
     methodName: OnClickBackToMain
   - assembly: Assembly-CSharp
     fullTypeName: lobbymanager
     methodName: OnClickLeaveRoom
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
+    methodName: OnClickMap4Mult
+  - assembly: Assembly-CSharp
+    fullTypeName: lobbymanager
+    methodName: OnClickStartIA
   sceneClasses:
     Assets/Scenes/Circuit1.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1564}
+    - Class: 114
+      Script: {instanceID: 2744}
+    - Class: 114
+      Script: {instanceID: 3214}
+    - Class: 114
+      Script: {instanceID: 3274}
+    - Class: 114
+      Script: {instanceID: 5570}
+    - Class: 114
+      Script: {instanceID: 6226}
+    - Class: 114
+      Script: {instanceID: 6382}
+    - Class: 114
+      Script: {instanceID: 6422}
+    - Class: 114
+      Script: {instanceID: 6740}
+    - Class: 114
+      Script: {instanceID: 8338}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 146
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Circuit1IA.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -306,6 +417,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 81
@@ -413,6 +526,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1828}
     - Class: 114
       Script: {instanceID: 2276}
+    - Class: 114
+      Script: {instanceID: 2412}
     - Class: 114
       Script: {instanceID: 2744}
     - Class: 114
@@ -525,9 +640,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1750}
     - Class: 114
+      Script: {instanceID: 2412}
+    - Class: 114
       Script: {instanceID: 2744}
     - Class: 114
       Script: {instanceID: 3200}
+    - Class: 114
+      Script: {instanceID: 3214}
     - Class: 114
       Script: {instanceID: 3310}
     - Class: 114
@@ -552,6 +671,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7210}
     - Class: 114
       Script: {instanceID: 7952}
+    - Class: 114
+      Script: {instanceID: 34636}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1693,7 +1814,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 62447c27eaa694b08d6b82fdbd96e048
+      Hash: 3728bcee9b300e991149dc4284b50c9c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: lobbymanager
@@ -2405,6 +2526,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 504138e10c8dfd53b30634ca7180a140
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ImageUpdate
   platform: 19
   scenePathNames:
   - Assets/Scenes/StartMenu.unity
@@ -2412,4 +2539,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Circuit1.unity
   - Assets/Scenes/Circuit2.unity
   - Assets/Scenes/Circuit_Ach.unity
+  - Assets/Scenes/Circuit1IA.unity
   playerPath: D:/GitHub/Build/F99-RACING.exe
